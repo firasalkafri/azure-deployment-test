@@ -2,6 +2,13 @@
     "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "salalem": {
+            "type": "string",
+            "defaultValue": "azureuser",
+            "metadata": {
+                "description": "User name for the Virtual Machine."
+            }
+        },
         "variables": {
             "vmSize": "Standard_DS2",
             "vmName": "sshvm",
@@ -170,4 +177,3 @@
             }
         }
     }
-}
