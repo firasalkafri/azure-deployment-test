@@ -2,19 +2,6 @@
   "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "adminUserName": {
-      "type": "string",
-      "defaultValue": "azureuser",
-      "metadata": {
-        "description": "User name for the Virtual Machine."
-      }
-    },
-    "sshKeyData": {
-      "type": "string",
-      "metadata": {
-        "description": "SSH rsa public key file as a string."
-      }
-    }
   },
   "variables": {
     "vmSize": "Standard_DS2",
@@ -36,7 +23,7 @@
     "storageAccountType": "Premium_LRS",
     "virtualNetworkName": "sshVNET",
     "networkSecurityGroupName": "networkSecurityGroup1",
-    "sshKeyPath": "[concat('/home/',parameters('adminUserName'),'/.ssh/authorized_keys')]",
+    "sshKeyPath": "[concat('/home/salalem/.ssh/authorized_keys')]",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
     "subnet1Ref": "[concat(variables('vnetID'),'/subnets/',variables('subnet1Name'))]",
     "apiVersion": "2015-06-15"
@@ -155,14 +142,14 @@
         },
         "osProfile": {
           "computerName": "[variables('vmName')]",
-          "adminUsername": "[parameters('adminUserName')]",
+          "adminUsername": "salalem",
           "linuxConfiguration": {
             "disablePasswordAuthentication": "true",
             "ssh": {
               "publicKeys": [
                 {
                   "path": "[variables('sshKeyPath')]",
-                  "keyData": "[parameters('sshKeyData')]"
+                  "keyData": "gfvhbjknlm,;kjnbhgvbjnkml;klas,;kjnasdjkaslmd,;asdlasdsad;l,asdaskjhbjnkl;njbh"
                 }
               ]
             }
@@ -197,7 +184,7 @@
     "outputs": {
     "sshCommand": {
       "type": "string",
-      "value": "[concat('ssh ', parameters('adminUsername'), '@', variables('uniqueDnsLabelPrefix'), '.', resourceGroup().location, '.cloudapp.azure.com')]"
+      "value": "[concat('ssh ', 'salalem', '@', variables('uniqueDnsLabelPrefix'), '.', resourceGroup().location, '.cloudapp.azure.com')]"
     }
   }
 }
